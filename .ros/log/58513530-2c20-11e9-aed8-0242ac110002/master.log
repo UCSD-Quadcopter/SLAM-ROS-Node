@@ -1,0 +1,21 @@
+[rosmaster.main][INFO] 2019-02-09 04:08:25,319: initialization complete, waiting for shutdown
+[rosmaster.main][INFO] 2019-02-09 04:08:25,319: Starting ROS Master Node
+[xmlrpc][INFO] 2019-02-09 04:08:25,321: XML-RPC server binding to 0.0.0.0:11311
+[xmlrpc][INFO] 2019-02-09 04:08:25,321: Started XML-RPC server [http://7954276cab97:11311/]
+[xmlrpc][INFO] 2019-02-09 04:08:25,321: xml rpc node: starting XML-RPC server
+[rosmaster.master][INFO] 2019-02-09 04:08:25,321: Master initialized: port[11311], uri[http://7954276cab97:11311/]
+[rosmaster.master][INFO] 2019-02-09 04:08:25,389: +PARAM [/run_id] by /roslaunch
+[rosmaster.master][INFO] 2019-02-09 04:08:25,392: +PARAM [/roslaunch/uris/host_7954276cab97__46611] by /roslaunch
+[rosmaster.master][INFO] 2019-02-09 04:08:25,722: +PARAM [/rosversion] by /roslaunch
+[rosmaster.master][INFO] 2019-02-09 04:08:25,723: +PARAM [/rosdistro] by /roslaunch
+[rosmaster.master][INFO] 2019-02-09 04:08:25,819: +SERVICE [/rosout/get_loggers] /rosout http://7954276cab97:38063/
+[rosmaster.master][INFO] 2019-02-09 04:08:25,820: +SERVICE [/rosout/set_logger_level] /rosout http://7954276cab97:38063/
+[rosmaster.master][INFO] 2019-02-09 04:08:25,822: +PUB [/rosout_agg] /rosout http://7954276cab97:38063/
+[rosmaster.master][INFO] 2019-02-09 04:08:25,826: +SUB [/rosout] /rosout http://7954276cab97:38063/
+[rosmaster.master][INFO] 2019-02-09 04:08:26,633: -PUB [/rosout_agg] /rosout http://7954276cab97:38063/
+[rosmaster.master][INFO] 2019-02-09 04:08:26,634: -SUB [/rosout] /rosout http://7954276cab97:38063/
+[rosmaster.master][INFO] 2019-02-09 04:08:26,634: -SERVICE [/rosout/get_loggers] /rosout rosrpc://7954276cab97:36417
+[rosmaster.master][INFO] 2019-02-09 04:08:26,634: -SERVICE [/rosout/set_logger_level] /rosout rosrpc://7954276cab97:36417
+[rosmaster.main][INFO] 2019-02-09 04:08:26,694: keyboard interrupt, will exit
+[rosmaster.main][INFO] 2019-02-09 04:08:26,694: stopping master...
+[rospy.core][INFO] 2019-02-09 04:08:26,695: signal_shutdown [atexit]
