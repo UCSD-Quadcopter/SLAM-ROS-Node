@@ -1,0 +1,83 @@
+[roslaunch][INFO] 2019-02-09 03:17:23,823: Checking log directory for disk usage. This may take awhile.
+Press Ctrl-C to interrupt
+[roslaunch][INFO] 2019-02-09 03:17:23,828: Done checking log file disk usage. Usage is <1GB.
+[roslaunch][INFO] 2019-02-09 03:17:23,829: roslaunch starting with args ['roscore', '--core']
+[roslaunch][INFO] 2019-02-09 03:17:23,829: roslaunch env is {'ROS_DISTRO': 'melodic', 'ROSLISP_PACKAGE_DIRECTORIES': '/root/catkin_ws/devel/share/common-lisp', 'ROS_PACKAGE_PATH': '/root/catkin_ws/src:/opt/ros/melodic/share', 'HOME': '/root', 'CMAKE_PREFIX_PATH': '/root/catkin_ws/devel:/opt/ros/melodic', 'LD_LIBRARY_PATH': '/root/catkin_ws/devel/lib:/opt/ros/melodic/lib', 'LANG': 'C.UTF-8', 'TERM': 'screen', 'SHELL': '/bin/bash', 'SHLVL': '2', 'ROS_LOG_FILENAME': '/root/.ros/log/38126156-2c19-11e9-9001-0242ac110002/roslaunch-b7ad543a5255-1138.log', 'ROS_MASTER_URI': 'http://localhost:11311', 'ROS_PYTHON_VERSION': '2', 'PYTHONPATH': '/opt/ros/melodic/lib/python2.7/dist-packages', 'TMUX': '/tmp/tmux-0/default,1119,0', 'ROS_ROOT': '/opt/ros/melodic/share/ros', 'PATH': '/opt/ros/melodic/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'PKG_CONFIG_PATH': '/root/catkin_ws/devel/lib/pkgconfig:/opt/ros/melodic/lib/pkgconfig', 'LC_ALL': 'C.UTF-8', '_': '/opt/ros/melodic/bin/roscore', 'OLDPWD': '/root/catkin_ws/src/main', 'HOSTNAME': 'b7ad543a5255', 'PWD': '/root/catkin_ws', 'ROS_ETC_DIR': '/opt/ros/melodic/etc/ros', 'ROS_VERSION': '1', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'TMUX_PANE': '%0'}
+[roslaunch][INFO] 2019-02-09 03:17:23,829: starting in server mode
+[roslaunch.parent][INFO] 2019-02-09 03:17:23,830: starting roslaunch parent run
+[roslaunch][INFO] 2019-02-09 03:17:23,830: loading roscore config file /opt/ros/melodic/etc/ros/roscore.xml
+[roslaunch][INFO] 2019-02-09 03:17:24,115: Added core node of type [rosout/rosout] in namespace [/]
+[roslaunch.pmon][INFO] 2019-02-09 03:17:24,115: start_process_monitor: creating ProcessMonitor
+[roslaunch.pmon][INFO] 2019-02-09 03:17:24,115: created process monitor <ProcessMonitor(ProcessMonitor-1, initial daemon)>
+[roslaunch.pmon][INFO] 2019-02-09 03:17:24,116: start_process_monitor: ProcessMonitor started
+[roslaunch.parent][INFO] 2019-02-09 03:17:24,116: starting parent XML-RPC server
+[roslaunch.server][INFO] 2019-02-09 03:17:24,116: starting roslaunch XML-RPC server
+[roslaunch.server][INFO] 2019-02-09 03:17:24,116: waiting for roslaunch XML-RPC server to initialize
+[xmlrpc][INFO] 2019-02-09 03:17:24,116: XML-RPC server binding to 0.0.0.0:0
+[xmlrpc][INFO] 2019-02-09 03:17:24,117: Started XML-RPC server [http://b7ad543a5255:41187/]
+[xmlrpc][INFO] 2019-02-09 03:17:24,117: xml rpc node: starting XML-RPC server
+[roslaunch][INFO] 2019-02-09 03:17:24,131: started roslaunch server http://b7ad543a5255:41187/
+[roslaunch.parent][INFO] 2019-02-09 03:17:24,131: ... parent XML-RPC server started
+[roslaunch][INFO] 2019-02-09 03:17:24,132: master.is_running[http://b7ad543a5255:11311/]
+[roslaunch][INFO] 2019-02-09 03:17:24,139: auto-starting new master
+[roslaunch][INFO] 2019-02-09 03:17:24,141: create_master_process: rosmaster, /opt/ros/melodic/share/ros, 11311, 3, None, False
+[roslaunch][INFO] 2019-02-09 03:17:24,141: process[master]: launching with args [['rosmaster', '--core', '-p', '11311', '-w', '3']]
+[roslaunch.pmon][INFO] 2019-02-09 03:17:24,142: ProcessMonitor.register[master]
+[roslaunch.pmon][INFO] 2019-02-09 03:17:24,142: ProcessMonitor.register[master] complete
+[roslaunch][INFO] 2019-02-09 03:17:24,142: process[master]: starting os process
+[roslaunch][INFO] 2019-02-09 03:17:24,142: process[master]: start w/ args [['rosmaster', '--core', '-p', '11311', '-w', '3', '__log:=/root/.ros/log/38126156-2c19-11e9-9001-0242ac110002/master.log']]
+[roslaunch][INFO] 2019-02-09 03:17:24,142: process[master]: cwd will be [/root/.ros]
+[roslaunch][INFO] 2019-02-09 03:17:24,420: process[master]: started with pid [1148]
+[roslaunch][INFO] 2019-02-09 03:17:24,420: master.is_running[http://b7ad543a5255:11311/]
+[roslaunch][INFO] 2019-02-09 03:17:24,523: master.is_running[http://b7ad543a5255:11311/]
+[roslaunch][INFO] 2019-02-09 03:17:24,624: master.is_running[http://b7ad543a5255:11311/]
+[roslaunch][INFO] 2019-02-09 03:17:24,627: master.is_running[http://b7ad543a5255:11311/]
+[roslaunch][INFO] 2019-02-09 03:17:24,629: ROS_MASTER_URI=http://b7ad543a5255:11311/
+[roslaunch][INFO] 2019-02-09 03:17:24,633: setting /run_id to 38126156-2c19-11e9-9001-0242ac110002
+[roslaunch][INFO] 2019-02-09 03:17:24,637: setting /roslaunch/uris/host_b7ad543a5255__41187' to http://b7ad543a5255:41187/
+[roslaunch][INFO] 2019-02-09 03:17:24,642: ... preparing to launch node of type [rosout/rosout]
+[roslaunch][INFO] 2019-02-09 03:17:24,642: create_node_process: package[rosout] type[rosout] machine[Machine(name[] env_loader[None] address[localhost] ssh_port[22] user[None] assignable[True] timeout[10.0])] master_uri[http://b7ad543a5255:11311/]
+[roslaunch][INFO] 2019-02-09 03:17:24,643: process[rosout-1]: env[{'ROS_DISTRO': 'melodic', 'ROSLISP_PACKAGE_DIRECTORIES': '/root/catkin_ws/devel/share/common-lisp', 'HOME': '/root', 'PATH': '/opt/ros/melodic/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'ROS_PACKAGE_PATH': '/root/catkin_ws/src:/opt/ros/melodic/share', 'CMAKE_PREFIX_PATH': '/root/catkin_ws/devel:/opt/ros/melodic', 'ROS_LOG_FILENAME': '/root/.ros/log/38126156-2c19-11e9-9001-0242ac110002/roslaunch-b7ad543a5255-1138.log', 'LANG': 'C.UTF-8', 'TERM': 'screen', 'SHELL': '/bin/bash', 'SHLVL': '2', 'LD_LIBRARY_PATH': '/root/catkin_ws/devel/lib:/opt/ros/melodic/lib', 'ROS_ETC_DIR': '/opt/ros/melodic/etc/ros', 'ROS_PYTHON_VERSION': '2', 'PYTHONPATH': '/opt/ros/melodic/lib/python2.7/dist-packages', 'TMUX': '/tmp/tmux-0/default,1119,0', 'ROS_ROOT': '/opt/ros/melodic/share/ros', 'PKG_CONFIG_PATH': '/root/catkin_ws/devel/lib/pkgconfig:/opt/ros/melodic/lib/pkgconfig', 'LC_ALL': 'C.UTF-8', '_': '/opt/ros/melodic/bin/roscore', 'OLDPWD': '/root/catkin_ws/src/main', 'HOSTNAME': 'b7ad543a5255', 'PWD': '/root/catkin_ws', 'ROS_MASTER_URI': 'http://b7ad543a5255:11311/', 'ROS_VERSION': '1', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'TMUX_PANE': '%0'}]
+[roslaunch][INFO] 2019-02-09 03:17:24,655: process[rosout-1]: args[[u'/opt/ros/melodic/lib/rosout/rosout', u'__name:=rosout']]
+[roslaunch][INFO] 2019-02-09 03:17:24,655: ... created process [rosout-1]
+[roslaunch.pmon][INFO] 2019-02-09 03:17:24,656: ProcessMonitor.register[rosout-1]
+[roslaunch.pmon][INFO] 2019-02-09 03:17:24,656: ProcessMonitor.register[rosout-1] complete
+[roslaunch][INFO] 2019-02-09 03:17:24,656: ... registered process [rosout-1]
+[roslaunch][INFO] 2019-02-09 03:17:24,656: process[rosout-1]: starting os process
+[roslaunch][INFO] 2019-02-09 03:17:24,656: process[rosout-1]: start w/ args [[u'/opt/ros/melodic/lib/rosout/rosout', u'__name:=rosout', u'__log:=/root/.ros/log/38126156-2c19-11e9-9001-0242ac110002/rosout-1.log']]
+[roslaunch][INFO] 2019-02-09 03:17:24,656: process[rosout-1]: cwd will be [/root/.ros]
+[roslaunch][INFO] 2019-02-09 03:17:24,937: process[rosout-1]: started with pid [1159]
+[roslaunch][INFO] 2019-02-09 03:17:24,937: ... successfully launched [rosout-1]
+[roslaunch][INFO] 2019-02-09 03:17:24,938: load_parameters starting ...
+[roslaunch][INFO] 2019-02-09 03:17:24,943: ... load_parameters complete
+[roslaunch][INFO] 2019-02-09 03:17:24,943: launch_nodes: launching local nodes ...
+[roslaunch][INFO] 2019-02-09 03:17:24,943: ... launch_nodes complete
+[roslaunch.pmon][INFO] 2019-02-09 03:17:24,943: registrations completed <ProcessMonitor(ProcessMonitor-1, started daemon 139663973926656)>
+[roslaunch.parent][INFO] 2019-02-09 03:17:24,944: ... roslaunch parent running, waiting for process exit
+[roslaunch][INFO] 2019-02-09 03:17:24,944: spin
+[roslaunch.pmon][INFO] 2019-02-09 03:32:49,115: ProcessMonitor.shutdown <ProcessMonitor(ProcessMonitor-1, started daemon 139663973926656)>
+[roslaunch.pmon][INFO] 2019-02-09 03:32:49,130: ProcessMonitor._post_run <ProcessMonitor(ProcessMonitor-1, started daemon 139663973926656)>
+[roslaunch.pmon][INFO] 2019-02-09 03:32:49,131: ProcessMonitor._post_run <ProcessMonitor(ProcessMonitor-1, started daemon 139663973926656)>: remaining procs are [<roslaunch.nodeprocess.LocalProcess object at 0x7f060d8f4d10>, <roslaunch.nodeprocess.LocalProcess object at 0x7f060d8f4e50>]
+[roslaunch.pmon][INFO] 2019-02-09 03:32:49,133: ProcessMonitor exit: killing rosout-1
+[roslaunch][INFO] 2019-02-09 03:32:49,133: [rosout-1] killing on exit
+[roslaunch][INFO] 2019-02-09 03:32:49,133: process[rosout-1]: killing os process with pid[1159] pgid[1159]
+[roslaunch][INFO] 2019-02-09 03:32:49,134: [rosout-1] sending SIGINT to pgid [1159]
+[roslaunch][INFO] 2019-02-09 03:32:49,134: [rosout-1] sent SIGINT to pgid [1159]
+[roslaunch][INFO] 2019-02-09 03:32:49,436: process[rosout-1]: SIGINT killed with return value 0
+[roslaunch.pmon][INFO] 2019-02-09 03:32:49,436: ProcessMonitor exit: killing master
+[roslaunch][INFO] 2019-02-09 03:32:49,437: [master] killing on exit
+[roslaunch][INFO] 2019-02-09 03:32:49,437: process[master]: killing os process with pid[1148] pgid[1148]
+[roslaunch][INFO] 2019-02-09 03:32:49,438: [master] sending SIGINT to pgid [1148]
+[roslaunch][INFO] 2019-02-09 03:32:49,439: [master] sent SIGINT to pgid [1148]
+[roslaunch][INFO] 2019-02-09 03:32:49,652: process[master]: SIGINT killed with return value 0
+[roslaunch.pmon][INFO] 2019-02-09 03:32:49,652: ProcessMonitor exit: cleaning up data structures and signals
+[roslaunch.pmon][INFO] 2019-02-09 03:32:49,652: ProcessMonitor exit: pmon has shutdown
+[roslaunch][INFO] 2019-02-09 03:32:49,692: process monitor is done spinning, initiating full shutdown
+[roslaunch][INFO] 2019-02-09 03:32:49,692: runner.stop()
+[roslaunch][INFO] 2019-02-09 03:32:49,692: shutting down processing monitor...
+[roslaunch][INFO] 2019-02-09 03:32:49,693: shutting down processing monitor <ProcessMonitor(ProcessMonitor-1, stopped daemon 139663973926656)>
+[roslaunch.pmon][INFO] 2019-02-09 03:32:49,693: ProcessMonitor.shutdown <ProcessMonitor(ProcessMonitor-1, stopped daemon 139663973926656)>
+[roslaunch][INFO] 2019-02-09 03:32:49,693: ... shutting down processing monitor complete
+[roslaunch][INFO] 2019-02-09 03:32:49,693: done
+[roslaunch.pmon][INFO] 2019-02-09 03:32:49,694: ProcessMonitor.shutdown <ProcessMonitor(ProcessMonitor-1, stopped daemon 139663973926656)>
+[rospy.core][INFO] 2019-02-09 03:32:49,695: signal_shutdown [atexit]

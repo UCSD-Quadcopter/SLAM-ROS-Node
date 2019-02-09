@@ -3,6 +3,6 @@ prefix=/root/catkin_ws/devel
 Name: main
 Description: Description of main
 Version: 0.0.0
-Cflags: 
+Cflags: -I/root/catkin_ws/devel/include
 Libs: -L/root/catkin_ws/devel/lib 
 Requires: 

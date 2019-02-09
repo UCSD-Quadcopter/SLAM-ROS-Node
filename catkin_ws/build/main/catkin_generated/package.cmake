@@ -1,6 +1,6 @@
 set(_CATKIN_CURRENT_PACKAGE "main")
 set(main_VERSION "0.0.0")
-set(main_MAINTAINER "root <root@todo.todo>")
+set(main_MAINTAINER "Ronak Shah <ronakshah@ieee.org>, Nick Nebel <nick.thenebels@gmail.com>")
 set(main_PACKAGE_FORMAT "2")
 set(main_BUILD_DEPENDS "roscpp" "rospy" "std_msgs")
 set(main_BUILD_EXPORT_DEPENDS "roscpp" "rospy" "std_msgs")

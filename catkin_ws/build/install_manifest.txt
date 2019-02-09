@@ -1,0 +1,10 @@
+/root/catkin_ws/install/_setup_util.py
+/root/catkin_ws/install/env.sh
+/root/catkin_ws/install/setup.bash
+/root/catkin_ws/install/setup.sh
+/root/catkin_ws/install/setup.zsh
+/root/catkin_ws/install/.rosinstall
+/root/catkin_ws/install/lib/pkgconfig/main.pc
+/root/catkin_ws/install/share/main/cmake/mainConfig.cmake
+/root/catkin_ws/install/share/main/cmake/mainConfig-version.cmake
+/root/catkin_ws/install/share/main/package.xml
