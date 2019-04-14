@@ -13,6 +13,7 @@
 #define LOOP_RATE_HZ 20
 #define CACHE_SIZ 10
 #define STATE_VEC_DIM 12
+#define LOOP_PERIOD 1./LOOP_RATE_HZ
 
 // sensor struct
 struct Sensor {
@@ -74,22 +75,22 @@ bool parse_args(int argc, char* argv[],
 }
 
 // callback for data
-void data_callback(const std_msgs::Float32MultiArray::ConstPtr& msg, Sensor & sensor) {
+void data_callback(const std_msgs::Float32MultiArray::ConstPtr& msg, Sensor & sensor, std::atomic<cv::KalmanFilter> mainFilter) {
     sensor.data = msg->data;
 
-    // call the kalman filter update function
+    sensor.filter.statePre = mainFilter.statePost;
+    sensor.filter.correct(sensor.data);
+    mainFilter.statePre = sensor.filter.statePre;
 }
 
-// callback for meta
+// callback for meta: called once to set the sensor matrix
 void meta_callback(const std_msgs::Float32MultiArray::ConstPtr& msg, Sensor & sensor) {
-    meta = msg->data;
-
-    sensor.filter = cv::KalmanFilter(STATE_VEC_DIM,msg->layout.dim[0].size);
+    sensor.meta = msg->data;
 }
 
 // callback for covariance
 void noise_callback(const std_msgs::Float32MultiArray::ConstPtr& msg, Float32MultiArray & noise) {
-    noise = msg->data;
+    sensor.noise = msg->data;
 }
 
 int main(int argc, char* argv[])
@@ -97,6 +98,20 @@ int main(int argc, char* argv[])
     std::vector<cv::String> sensors;
     cv::String output_topic;
     bool valid_input = parse_args(argc, argv, sensors, output_topic);
+    std::atomic<cv::KalmanFilter> mainFilter(STATE_VEC_DIM,0);
+    mainFilter.transistionMatrix = *(Mat<float> (STATE_VEC_DIM,STATE_VEC_DIM) <<
+	    1,0,0,0,0,0,LOOP_PERIOD,0,0,0,0,0,
+	    0,1,0,0,0,0,0,LOOP_PERIOD,0,0,0,0,
+	    0,0,1,0,0,0,0,0,LOOP_PERIOD,0,0,0,
+	    0,0,0,1,0,0,0,0,0,LOOP_PERIOD,0,0,
+	    0,0,0,0,1,0,0,0,0,0,LOOP_PERIOD,0,
+	    0,0,0,0,0,1,0,0,0,0,0,LOOP_PERIOD,
+	    0,0,0,0,0,0,1,0,0,0,0,0,
+	    0,0,0,0,0,0,0,1,0,0,0,0,
+	    0,0,0,0,0,0,0,0,1,0,0,0,
+	    0,0,0,0,0,0,0,0,0,1,0,0,
+	    0,0,0,0,0,0,0,0,0,0,1,0,
+	    0,0,0,0,0,0,0,0,0,0,0,1);
 
     if (!valid_input)
     {
@@ -109,6 +124,7 @@ int main(int argc, char* argv[])
     std::vector<cv::String> sensor_data_topics(sensors.size());
     std::vector<cv::String> sensor_meta_topics(sensors.size());
     std::vector<cv::String> sensor_noise_topics(sensors.size());
+
 
     std::vector<Sensor> sensor_structs;
     for (int i = 0; i < sensors.size(); i++)
@@ -128,6 +144,20 @@ int main(int argc, char* argv[])
 	sensor_structs[i].noise_sub = n.subscribe(sensor_noise_topics[i], CACHE_SIZ, noise_callback_bind);
     }
 
+    // TODO: need to guarantee that only meta and noise callbacks are called
+    ros::spinOnce();
+
+    // initialise all kalman filters for each sensor
+    for (Sensor & sensor : sensor_structs) {
+        sensor.filter = cv::KalmanFilter(STATE_VEC_DIM,sensor.meta.layout.dim[0].size);
+        for (int i = 0; i < STATE_VEC_DIM; i++) {
+            sensor.filter.statePre.at<float>(i) = 0;
+        } 
+	setIdentity(sensor.filter.measurementMatrix);
+	setIdentity(sensor.filter.processNoiseCov, cv::Scalar::all(1e-4));         
+        sensor.filter.measurementNoiseCov = cv::Mat(sensor.noise.layout.dim[0].size,sensor.layout.dim[1].size,CV_32F,noise);
+    }
+
     
 
     ros::Publisher system_pub = 
@@ -135,10 +165,14 @@ int main(int argc, char* argv[])
     ros::Rate loop_rate(LOOP_RATE_HZ);
 
     std_msgs::Float32MultiArray output_state;
-
+    
     while (ros::ok())
     {
-        
+	ros::spinOnce(); // calls all data callbacks
+	mainFilter.predict();
+	output_state = mainFilter.statePost; // TODO: make utility function to convert cv::Mat to Float32MultiArray
+	system_pub.publish(output_state);
+        loop_rate.sleep();     
     }
 
     std::cout << "success" << std::endl;
