@@ -1,48 +1,54 @@
 // License: Apache 2.0. See LICENSE file in root directory.
-// Copyright(c) 2017 Intel Corporation. All Rights Reserved.
-
+// Copyright(c) 2017 Intel Corporation. All Rights Reserved.  
 #include <librealsense2/rs.hpp> // Include RealSense Cross Platform API
+#include <librealsense2/rsutil.h>
 #include <opencv2/opencv.hpp>   // Include OpenCV API
 #include <math.h>
 
 // define a test constant for meters per pixel (want to get this somehow)
-#define POW_2(x) x * x
+#define POW_2(x) ((x) * (x))
+#define CAM_MAT {1736.04, 0.0, 356.59, 0.0, 1752.22, 291.99, 0.0, 0.0, 1.0}
 
-// depth and output must have the same dimensions, output must be 3 dimensional
+void get_3d_pt(const rs2_intrinsics & intr, const rs2::depth_frame & frame, float in_pt[2], float out_pt[3]) {
+    auto dist = frame.get_distance(in_pt[0], in_pt[1]);
+    rs2_deproject_pixel_to_point(out_pt, &intr, in_pt, dist);
+}
+
 using namespace cv;
-void get_avoidance_vectors(cv::Mat *depth, cv::Mat *output, cv::Mat *calibMat){
-    int nRows = depth->rows;
-    int nCols = depth->cols;
+void get_avoidance_vectors(const rs2::depth_frame &frame, Mat *output, float net_avoidance_vec[3]) {
 
-    int i,j;
+    net_avoidance_vec[0] = net_avoidance_vec[1] = net_avoidance_vec[2] = 0;
+    int rows = frame.get_height();
+    int cols = frame.get_width();
 
-    Mat calibInv = calibMat->inv();
-    float * rowPtr;
-    for(i = 0; i < nRows; i++) {
-        rowPtr = depth->ptr<float>(i);
-        for(j = 0; j < nCols; j++) {
+    rs2_intrinsics intr = frame.get_profile().as<rs2::video_stream_profile>().get_intrinsics();
+    
 
-            float depth = rowPtr[j]; 
-            // handle case where depth is not available (place blank vector at current index)
-            if (depth == 0) {
-                output->at<Vec3f>(i,j)[0] = 0;
-                output->at<Vec3f>(i,j)[1] = 0;
-                output->at<Vec3f>(i,j)[2] = 0;
-                continue;
+    for (int i = 0; i < rows; i++) {
+        for(int j = 0; j < cols; j++) {
+            float pixel[2];
+            pixel[0] = j;
+            pixel[1] = i;
+
+            float avoidance_vec[3] = { 0.0, 0.0, 0.0 };
+
+            get_3d_pt(intr, frame, pixel, avoidance_vec);
+
+            float norm_squared = POW_2(avoidance_vec[0]) + POW_2(avoidance_vec[1]) + POW_2(avoidance_vec[2]);
+            if (norm_squared == 0) continue;
+            for(int a = 0; a < 3; a++) {
+                avoidance_vec[a] = -avoidance_vec[a]/norm_squared;
+
+                net_avoidance_vec[a] += avoidance_vec[a];
             }
-                
-            // i is the pixel index in the y direction and j is the pixel index in the x direction
-            // need calibration matrix here
-            
-            cv::Vec3f imgPointVec(j,i,1.);
-            cv::Mat worldPointVec = (calibInv * Mat(imgPointVec)) * depth;
-            float normSquared = POW_2(worldPointVec.ptr<float>(0)[0]) + POW_2(worldPointVec.ptr<float>(1)[0]) + POW_2(worldPointVec.ptr<float>(2)[0]);
-            cv::Mat avoidanceVec = worldPointVec / -normSquared;
 
-            output->at<Vec3f>(i,j)[0] = avoidanceVec.ptr<float>(0)[0];
-            output->at<Vec3f>(i,j)[1] = avoidanceVec.ptr<float>(1)[0];
-            output->at<Vec3f>(i,j)[2] = avoidanceVec.ptr<float>(2)[0];
+            output->at<Vec3f>(i,j)[0] = avoidance_vec[0];
+            output->at<Vec3f>(i,j)[1] = avoidance_vec[1];
+            output->at<Vec3f>(i,j)[2] = avoidance_vec[2];
         }
+    }
+    for(int a = 0; a < 3; a++) {
+        net_avoidance_vec[a] = net_avoidance_vec[a]/(rows*cols);
     }
 }
 
@@ -54,11 +60,15 @@ int main(int argc, char * argv[]) try
     // Declare RealSense pipeline, encapsulating the actual device and sensors
     rs2::pipeline pipe;
     // Start streaming with default recommended configuration
-    pipe.start();
+    rs2::pipeline_profile profile = pipe.start();
+
+    //auto sensor = profile.get_device().first<rs2::depth_sensor>();
+    //auto scale =  sensor.get_depth_scale(); 
 
     const auto window_name = "Display Image";
 
-    Mat calibMat;
+    float camMat[9] = CAM_MAT;
+    Mat calibMat(3,3,CV_32F,camMat);
     Mat outputDisplay;
 
     while (waitKey(1) < 0) 
@@ -66,20 +76,22 @@ int main(int argc, char * argv[]) try
         rs2::frameset data = pipe.wait_for_frames(); // Wait for next set of frames from the camera
         rs2::frame depth = data.get_depth_frame();
 
-        // Query frame size (width and height)
-        const int w = depth.as<rs2::video_frame>().get_width();
-        const int h = depth.as<rs2::video_frame>().get_height();
-
-        // Create OpenCV matrix of size (w,h) from the colorized depth data
-        Mat image(Size(w, h), CV_32F , (void*)depth.get_data(), Mat::AUTO_STEP);
+        int h = depth.as<rs2::video_frame>().get_height();
+        int w = depth.as<rs2::video_frame>().get_width();
+        
+        float net_avoidance_vec[3] = {0, 0, 0};
+        
+        // TODO: maybe some post processing for the depth frame?
         
         Mat output = Mat::zeros(w,h,CV_32FC3);
 
-        get_avoidance_vectors(&image, &output, &calibMat);
-        
-        output.convertTo(outputDisplay, CV_8UC3);
+        get_avoidance_vectors(depth, &output, net_avoidance_vec);
 
-        imshow("Avoidance vectors",outputDisplay);
+        std::cout << "\n( " << net_avoidance_vec[0] << " , " << net_avoidance_vec[1] << " , " << net_avoidance_vec[2] << " )" << std::endl;
+        std::cout << "Norm: " << sqrt(POW_2(net_avoidance_vec[0]) + POW_2(net_avoidance_vec[1]) + POW_2(net_avoidance_vec[2])) << std::endl;
+        
+        //output.convertTo(output, CV_8UC3);
+
     }
 
     return EXIT_SUCCESS;
