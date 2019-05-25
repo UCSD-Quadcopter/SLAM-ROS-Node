@@ -19,4 +19,9 @@ To make a sensor using this, create a class that implements isensor and implemen
 A kalman system that takes in many sensor inputs and outputs the state to one output topic. See issue #3 for more info
 
 ### `opflow_cam`
-Code for a sensor that points down on the quadcopter and tracks the floor as the quadcopter moves. Also an example sensor to show how to use `sensor_template` 
+Code for a sensor that points down on the quadcopter and tracks the floor as the quadcopter moves. Also an example sensor to show how to use `sensor_template`
+
+### `get_avoidance_vectors`
+Code that calculates a vector to avoid obstacles while maintaining a path towards a target. Calcluates based off a target direction and camera depthmap.
+
+Not a ROS Node.
